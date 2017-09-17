@@ -6,8 +6,19 @@ import time
 hwin = win32gui.FindWindow(None,'Grand Theft Auto V') #it gets the process ID or as microsoft calls it 'window handle'
 
 def grab_screen(region=None):
+
     # last_time = time.time()
     while(True):
+        if region:
+            left,top,x2,y2 = region
+            width = x2 - left + 1
+            height = y2 - top + 1
+        else:
+            width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
+            height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
+            left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
+            top = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
+
         hwindc = win32gui.GetWindowDC(hwin)
         srcdc = win32ui.CreateDCFromHandle(hwindc)
         memdc = srcdc.CreateCompatibleDC()
