@@ -9,7 +9,7 @@ def grab_screen(region=None):
 
     # last_time = time.time()
     while(True):
-            left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
+        #currently hardcoding the values for 800x600, have to find another way to get the values
         top = 8
         left = 40
         height = 592
