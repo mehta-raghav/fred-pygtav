@@ -1,4 +1,4 @@
-# import cv2
+import cv2
 import numpy as np
 import win32gui, win32ui, win32con, win32api
 import time
@@ -22,15 +22,19 @@ def grab_screen(region=None):
         bmp.CreateCompatibleBitmap(srcdc, width, height)
         memdc.SelectObject(bmp)
         memdc.BitBlt((0, 0), (width, height), srcdc, (left, top), win32con.SRCCOPY)
-
+        
         signedIntsArray = bmp.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype='uint8')
         img.shape = (height,width,4)
+        dim = (160,120)
+        res = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+        #print (img.shape)
+        #print (res.shape)
         # This is image show which uses openCV
-        # cv2.imshow('window',img)
-        # if cv2.waitKey(25) & 0xFF == ord('q'):
-        #     cv2.destroyAllWindows()
-        #     break
+        cv2.imshow('window',res)
+        if cv2.waitKey(25) & 0xFF == ord('q'):
+            cv2.destroyAllWindows()
+            break
         srcdc.DeleteDC()
         memdc.DeleteDC()
         win32gui.ReleaseDC(hwin, hwindc)
