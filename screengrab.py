@@ -7,7 +7,7 @@ hwin = win32gui.FindWindow(None,'Grand Theft Auto V') #it gets the process ID or
 
 def grab_screen(region=None):
 
-    # last_time = time.time()
+    #last_time = time.time()
     while(True):
         #currently hardcoding the values for 800x600, have to find another way to get the values
         top = 8
@@ -28,6 +28,7 @@ def grab_screen(region=None):
         img.shape = (height,width,4)
         dim = (160,120)
         res = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
+        res = cv2.cvtColor( res, cv2.COLOR_RGB2GRAY )
         #print (img.shape)
         #print (res.shape)
         # This is image show which uses openCV
@@ -39,8 +40,8 @@ def grab_screen(region=None):
         memdc.DeleteDC()
         win32gui.ReleaseDC(hwin, hwindc)
         win32gui.DeleteObject(bmp.GetHandle())
-        # print('loop took {} seconds'.format(time.time()-last_time))
-        # last_time = time.time()
+        #print('loop took {} seconds'.format(time.time()-last_time))
+        #last_time = time.time()
 
 
 grab_screen()
