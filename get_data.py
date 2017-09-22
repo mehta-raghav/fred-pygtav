@@ -1,8 +1,8 @@
 import numpy as np
-# from grabscreen import grab_screen
+from grabscreen import grab_screen
 import cv2
 import time
-# from getkeys import key_check
+from getkeys import key_check
 import os
 
 def keys_to_output(keys):
@@ -55,6 +55,7 @@ def main():
     while True:
         if not paused:
             screen = #grab screen
+            screen = cv2.resize(screen, (160,120), interpolation = cv2.INTER_AREA) #resize
             output = #get output-keys
             training_data.append([screen,output])
 
