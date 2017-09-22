@@ -64,7 +64,7 @@ def main():
             np.save(file_name,training_data)
 
         keys = key_check()
-        if '' in keys:
+        if 'T' in keys:
             if paused:
                 countdown()
                 paused = False
