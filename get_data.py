@@ -54,9 +54,9 @@ def main():
     countdown()
     while True:
         if not paused:
-            screen = #grab screen
+            screen = grab_screen()
             screen = cv2.resize(screen, (160,120), interpolation = cv2.INTER_AREA) #resize
-            output = #get output-keys
+            output = key_check()
             training_data.append([screen,output])
 
         if len(training_data) % 1000 == 0:
