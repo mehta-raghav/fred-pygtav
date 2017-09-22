@@ -1,9 +1,11 @@
 import numpy as np
-from grabscreen import grab_screen
+from screengrab import grab_screen
 import cv2
 import time
 from getkeys import key_check
 import os
+
+#import_module(screengrab)
 
 def keys_to_output(keys):
     '''Convert keys to a multi-hot array boolean values.
@@ -46,7 +48,7 @@ def countdown():
 
 def main():
     file_name = 'training_data.npy'
-    load_data(file_name)
+    training_data = load_data(file_name)
 
     paused = True
 
