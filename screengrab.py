@@ -5,7 +5,7 @@ import time
 
 hwin = win32gui.FindWindow(None,'Grand Theft Auto V') #it gets the process ID or as microsoft calls it 'window handle'
 
-def grab_screen(region=None):
+def grab_screen():
 
     #last_time = time.time()
     while(True):
@@ -26,22 +26,16 @@ def grab_screen(region=None):
         signedIntsArray = bmp.GetBitmapBits(True)
         img = np.fromstring(signedIntsArray, dtype='uint8')
         img.shape = (height,width,4)
-        dim = (160,120)
-        res = cv2.resize(img, dim, interpolation = cv2.INTER_AREA)
-        res = cv2.cvtColor( res, cv2.COLOR_RGB2GRAY )
-        #print (img.shape)
-        #print (res.shape)
+
         # This is image show which uses openCV
-        cv2.imshow('window',res)
-        if cv2.waitKey(25) & 0xFF == ord('q'):
-            cv2.destroyAllWindows()
-            break
+        # cv2.imshow('window',res)
+        # if cv2.waitKey(25) & 0xFF == ord('q'):
+        #     cv2.destroyAllWindows()
+        #     break
         srcdc.DeleteDC()
         memdc.DeleteDC()
         win32gui.ReleaseDC(hwin, hwindc)
         win32gui.DeleteObject(bmp.GetHandle())
         #print('loop took {} seconds'.format(time.time()-last_time))
         #last_time = time.time()
-
-
-grab_screen()
+        return cv2.cvtColor(res, cv2.COLOR_RGB2GRAY)
