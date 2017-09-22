@@ -27,9 +27,8 @@ def grab_screen():
         img = np.fromstring(signedIntsArray, dtype='uint8')
         img.shape = (height,width,4)
 
-        # This is image show which uses openCV
-        # cv2.imshow('window',res)
-        # if cv2.waitKey(25) & 0xFF == ord('q'):
+        #cv2.imshow('window',img)
+        #if cv2.waitKey(25) & 0xFF == ord('q'):
         #     cv2.destroyAllWindows()
         #     break
         srcdc.DeleteDC()
@@ -38,4 +37,5 @@ def grab_screen():
         win32gui.DeleteObject(bmp.GetHandle())
         #print('loop took {} seconds'.format(time.time()-last_time))
         #last_time = time.time()
-        return cv2.cvtColor(res, cv2.COLOR_RGB2GRAY)
+        return cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+
