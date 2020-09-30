@@ -39,7 +39,7 @@ def load_data(file_name):
 
 def countdown():
     for i in list(range(5))[::-1]:
-        print(i+1)
+        print(f'Value of i is : {si+1}')
         time.sleep(1)
 
 def main():
@@ -60,11 +60,11 @@ def main():
     ##                 cv2.destroyAllWindows()
     ##                 break
                 output = keys_to_output(key_check())
-                print (output)
+                print (f'Output is : {output}')
                 training_data.append([screen,output])
                 
                 if len(training_data) % 1000 == 0:
-                    print(len(training_data))
+                    print(f'Length of training data is : {len(training_data)}')
                     np.save(file_name,training_data)
 
             except:
