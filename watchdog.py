@@ -1,14 +1,12 @@
+import cv2
 import numpy as np
 import pandas as pd
 from collections import Counter
-import cv2
 
 train_data = np.load('training_data_takeoff.npy')
-
 df = pd.DataFrame(train_data)
 print(df.head())
 print(Counter(df[1].apply(str)))
-
 
 for data in train_data:
     img = data[0]
