@@ -1,7 +1,6 @@
-# Citation: Box Of Hats (https://github.com/Box-Of-Hats )
-
-import win32api as wapi
 import time
+import win32api as wapi
+
 
 def custom_ord(a):
     if (a == '8'):
@@ -15,11 +14,12 @@ def custom_ord(a):
     else:
         return ord(a)
 
-
+    
 keyList = ["\b"]
 for _ in "ABCDEFGHIJKLMNOPQRSTUVWXYZ 123456789,.'£$/\\":
     keyList.append(_)
 
+    
 def key_check():
     keys = []
     for key in keyList:
