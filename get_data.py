@@ -1,13 +1,15 @@
-import numpy as np
-from screengrab import grab_screen
+import os
 import cv2
 import time
+import numpy as np
 from getkeys import key_check
-import os
+from screengrab import grab_screen
+
 
 def keys_to_output(keys):
     '''Convert keys to a multi-hot array boolean values.
              [W,S,A,D,8,4,5,6]'''
+    
     output = [0,0,0,0,0,0,0,0]
 
     if 'W' in keys:
@@ -28,6 +30,7 @@ def keys_to_output(keys):
         output[7] = 1
     return output
 
+
 def load_data(file_name):
     if os.path.isfile(file_name):
         print('File exists, loading previous data!')
@@ -37,11 +40,13 @@ def load_data(file_name):
         training_data = []
     return training_data
 
+
 def countdown():
     for i in list(range(5))[::-1]:
         print(f'Value of i is : {si+1}')
         time.sleep(1)
 
+        
 def main():
     file_name = 'training_data_takeoff'
     training_data = load_data(file_name)
@@ -54,19 +59,13 @@ def main():
         if not paused:
             try:
                 screen = grab_screen()
-                screen = cv2.resize(screen, (240,135), interpolation = cv2.INTER_AREA) #resize
-    ##            cv2.imshow('window',screen)
-    ##            if cv2.waitKey(25) & 0xFF == ord('q'):
-    ##                 cv2.destroyAllWindows()
-    ##                 break
+                screen = cv2.resize(screen, (240,135), interpolation = cv2.INTER_AREA)
                 output = keys_to_output(key_check())
                 print (f'Output is : {output}')
                 training_data.append([screen,output])
-                
                 if len(training_data) % 1000 == 0:
                     print(f'Length of training data is : {len(training_data)}')
                     np.save(file_name,training_data)
-
             except:
                 print ("Window not available. Please try again")
 
